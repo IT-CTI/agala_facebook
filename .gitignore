@@ -24,3 +24,7 @@ agala_fb-*.tar
 
 # Lagger logs
 /log
+
+#ElixirLS
+.vscode
+.elixir_ls
