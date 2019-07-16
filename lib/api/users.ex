@@ -7,7 +7,9 @@ defmodule Agala.Provider.Facebook.Helpers.Users do
   """
   def get_user_info(user_id, token) do
     case HTTPoison.get(
-           "https://graph.facebook.com/#{user_id}?fields=first_name,last_name&access_token=#{token}"
+           "https://graph.facebook.com/#{user_id}?fields=first_name,last_name&access_token=#{
+             token
+           }"
          ) do
       {:ok, %{body: body} = response} -> Jason.decode(body)
       error -> error

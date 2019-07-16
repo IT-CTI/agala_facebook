@@ -8,6 +8,7 @@ defmodule Agala.Provider.Facebook.Controllers.View do
   end
 
   def render(conn, status, data \\ [])
+
   def render(conn, :ok, data) do
     conn
     |> Conn.put_resp_content_type("application/json")

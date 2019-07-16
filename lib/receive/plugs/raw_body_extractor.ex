@@ -22,6 +22,7 @@ defmodule Agala.Provider.Facebook.Plugs.RawBodyExtractor do
       {:ok, body, conn} ->
         # Everything is ok
         Conn.put_private(conn, :body, body)
+
       _ ->
         View.render(conn, 422, %{body: "could not be read properly!"})
     end
