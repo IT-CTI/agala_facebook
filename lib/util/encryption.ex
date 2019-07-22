@@ -4,7 +4,8 @@ defmodule Agala.Provider.Facebook.Util.Encryption do
   @doc """
   Validate sha1 signature for given binary
   """
-  @spec validate_sha1(secret :: String.t(), body :: binary(), signature :: String.t()) :: :ok | {:error, Map.t()}
+  @spec validate_sha1(secret :: String.t(), body :: binary(), signature :: String.t()) ::
+          :ok | {:error, Map.t()}
   def validate_sha1(secret, body, signature) do
     case signature == calculate_sha1(secret, body) do
       true -> :ok

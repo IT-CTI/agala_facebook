@@ -9,28 +9,31 @@ defmodule Agala.Provider.Facebook.Controllers.Verification do
     |> verify_request()
   end
 
-  defp verify_request(%{
-         query_params: %{
-           "hub.mode" => "subscribe",
-           # We match both tokens as pattern matching
-           "hub.verify_token" => verify_token,
-           "hub.challenge" => challenge
-         },
-         private: %{
-           agala_bot_config: %{
-             provider_params: %{
-               # We match both tokens as pattern matching
-               verify_token: verify_token
+  defp verify_request(
+         %{
+           query_params: %{
+             "hub.mode" => "subscribe",
+             # We match both tokens as pattern matching
+             "hub.verify_token" => verify_token,
+             "hub.challenge" => challenge
+           },
+           private: %{
+             agala_bot_config: %{
+               provider_params: %{
+                 # We match both tokens as pattern matching
+                 verify_token: verify_token
+               }
              }
            }
-         }
-       } = conn) do
-        conn
-        |> View.render_raw(:ok, challenge)
+         } = conn
+       ) do
+    conn
+    |> View.render_raw(:ok, challenge)
   end
 
   defp verify_request(conn) do
     IO.inspect(conn)
+
     conn
     |> View.render(:unauthorized, %{error: "unauthorized!"})
   end

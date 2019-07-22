@@ -18,9 +18,12 @@ defmodule Agala.Provider.Facebook.Plugs.Validator do
       # todo: add better logging
       nil ->
         raise ArgumentError, "provider_params is not specified for your bot"
+
       %{app_secret: app_secret} ->
         validate_signature(conn, app_secret)
-      _ -> raise ArgumentError, "app_secret is not provided for your bot"
+
+      _ ->
+        raise ArgumentError, "app_secret is not provided for your bot"
     end
   end
 
